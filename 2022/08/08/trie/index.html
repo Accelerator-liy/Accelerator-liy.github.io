@@ -16,26 +16,27 @@
   <meta name="author" content="Accelerator">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本笔记参考知乎回答 Redis面试题1.什么是Redis？它主要用来什么的？2.说说Redis基本数据类型有哪些吧3.Redis为什么快呢？4.为什么Redis6.0之后又改用多线程呢?5.知道什么是热key吗？热key问题怎么解决？6.什么是缓存击穿、缓存穿透、缓存雪崩？7.Redis的过期策略有哪些？8.持久化方式有哪些？有什么区别？9.怎么实现Redis的高可用？10.能说说Redis集群的">
+    <meta name="description" content="前缀树&#x2F;字典树题目描述Trie（发音类似 &quot;try&quot;）或者说 前缀树 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补完和拼写检查。  请你实现 Trie 类：       Trie() 初始化前缀树对象。     void insert(String word) 向前缀树中插入字符串 word 。     boolean searc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis">
-<meta property="og:url" content="https://accelerator-liy.github.io/2022/03/02/redis/index.html">
+<meta property="og:title" content="Trie 前缀树">
+<meta property="og:url" content="https://accelerator-liy.github.io/2022/08/08/trie/index.html">
 <meta property="og:site_name" content="一期一会">
-<meta property="og:description" content="本笔记参考知乎回答 Redis面试题1.什么是Redis？它主要用来什么的？2.说说Redis基本数据类型有哪些吧3.Redis为什么快呢？4.为什么Redis6.0之后又改用多线程呢?5.知道什么是热key吗？热key问题怎么解决？6.什么是缓存击穿、缓存穿透、缓存雪崩？7.Redis的过期策略有哪些？8.持久化方式有哪些？有什么区别？9.怎么实现Redis的高可用？10.能说说Redis集群的">
+<meta property="og:description" content="前缀树&#x2F;字典树题目描述Trie（发音类似 &quot;try&quot;）或者说 前缀树 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补完和拼写检查。  请你实现 Trie 类：       Trie() 初始化前缀树对象。     void insert(String word) 向前缀树中插入字符串 word 。     boolean searc">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://accelerator-liy.github.io/img/redis/redis.png">
-<meta property="article:published_time" content="2022-03-02T04:09:28.000Z">
-<meta property="article:modified_time" content="2022-08-08T07:47:41.480Z">
+<meta property="og:image" content="https://accelerator-liy.github.io/img/trie/trie.webp">
+<meta property="article:published_time" content="2022-08-08T06:39:57.000Z">
+<meta property="article:modified_time" content="2022-08-08T07:48:28.089Z">
 <meta property="article:author" content="Accelerator">
-<meta property="article:tag" content="redis">
+<meta property="article:tag" content="前缀树">
+<meta property="article:tag" content="字典树">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://accelerator-liy.github.io/img/redis/redis.png">
+<meta name="twitter:image" content="https://accelerator-liy.github.io/img/trie/trie.webp">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Redis - 一期一会</title>
+  <title>Trie 前缀树 - 一期一会</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,13 +195,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/redis/background.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/backgroud_default/background1.webp') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Redis"></span>
+            <span id="subtitle" data-typed-text="Trie 前缀树"></span>
           
         </div>
 
@@ -211,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-03-02 12:09" pubdate>
-          March 2, 2022 pm
+        <time datetime="2022-08-08 14:39" pubdate>
+          August 8, 2022 pm
         </time>
       </span>
     
@@ -223,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          219 words
+          652 words
         
       </span>
     
@@ -234,7 +235,7 @@
         
         
         
-          2 mins
+          6 mins
         
       </span>
     
@@ -276,13 +277,65 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Redis</h1>
+            <h1 style="display: none">Trie 前缀树</h1>
             
             
               <div class="markdown-body">
                 
-                <p><strong>本笔记参考<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/61315701/answer/2118820885">知乎回答</a></strong></p>
-<h2 id="Redis面试题"><a href="#Redis面试题" class="headerlink" title="Redis面试题"></a>Redis面试题</h2><h3 id="1-什么是Redis？它主要用来什么的？"><a href="#1-什么是Redis？它主要用来什么的？" class="headerlink" title="1.什么是Redis？它主要用来什么的？"></a>1.什么是Redis？它主要用来什么的？</h3><h3 id="2-说说Redis基本数据类型有哪些吧"><a href="#2-说说Redis基本数据类型有哪些吧" class="headerlink" title="2.说说Redis基本数据类型有哪些吧"></a>2.说说Redis基本数据类型有哪些吧</h3><h3 id="3-Redis为什么快呢？"><a href="#3-Redis为什么快呢？" class="headerlink" title="3.Redis为什么快呢？"></a>3.Redis为什么快呢？</h3><h3 id="4-为什么Redis6-0之后又改用多线程呢"><a href="#4-为什么Redis6-0之后又改用多线程呢" class="headerlink" title="4.为什么Redis6.0之后又改用多线程呢?"></a>4.为什么Redis6.0之后又改用多线程呢?</h3><h3 id="5-知道什么是热key吗？热key问题怎么解决？"><a href="#5-知道什么是热key吗？热key问题怎么解决？" class="headerlink" title="5.知道什么是热key吗？热key问题怎么解决？"></a>5.知道什么是热key吗？热key问题怎么解决？</h3><h3 id="6-什么是缓存击穿、缓存穿透、缓存雪崩？"><a href="#6-什么是缓存击穿、缓存穿透、缓存雪崩？" class="headerlink" title="6.什么是缓存击穿、缓存穿透、缓存雪崩？"></a>6.什么是缓存击穿、缓存穿透、缓存雪崩？</h3><h3 id="7-Redis的过期策略有哪些？"><a href="#7-Redis的过期策略有哪些？" class="headerlink" title="7.Redis的过期策略有哪些？"></a>7.Redis的过期策略有哪些？</h3><h3 id="8-持久化方式有哪些？有什么区别？"><a href="#8-持久化方式有哪些？有什么区别？" class="headerlink" title="8.持久化方式有哪些？有什么区别？"></a>8.持久化方式有哪些？有什么区别？</h3><h3 id="9-怎么实现Redis的高可用？"><a href="#9-怎么实现Redis的高可用？" class="headerlink" title="9.怎么实现Redis的高可用？"></a>9.怎么实现Redis的高可用？</h3><h3 id="10-能说说Redis集群的原理吗？"><a href="#10-能说说Redis集群的原理吗？" class="headerlink" title="10.能说说Redis集群的原理吗？"></a>10.能说说Redis集群的原理吗？</h3><h3 id="11-了解Redis事务机制吗？"><a href="#11-了解Redis事务机制吗？" class="headerlink" title="11.了解Redis事务机制吗？"></a>11.了解Redis事务机制吗？</h3>
+                <h2 id="前缀树-x2F-字典树"><a href="#前缀树-x2F-字典树" class="headerlink" title="前缀树&#x2F;字典树"></a>前缀树&#x2F;字典树</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><strong><a href="https://baike.baidu.com/item/字典树/9825209?fr=aladdin" target="_blank">Trie</a></strong>（发音类似 "try"）或者说 <strong>前缀树</strong> 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补完和拼写检查。</p>
+
+<p>请你实现 Trie 类：</p>
+
+<ul>
+    <li><code>Trie()</code> 初始化前缀树对象。</li>
+    <li><code>void insert(String word)</code> 向前缀树中插入字符串 <code>word</code> 。</li>
+    <li><code>boolean search(String word)</code> 如果字符串 <code>word</code> 在前缀树中，返回 <code>true</code>（即，在检索之前已经插入）；否则，返回 <code>false</code> 。</li>
+    <li><code>boolean startsWith(String prefix)</code> 如果之前已经插入的字符串 <code>word</code> 的前缀之一为 <code>prefix</code> ，返回 <code>true</code> ；否则，返回 <code>false</code> 。</li>
+</ul>
+
+<p> </p>
+
+<p><strong>示例：</strong></p>
+
+<pre>
+<strong>输入</strong>
+["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
+[[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
+<strong>输出</strong>
+[null, null, true, false, true, null, true]
+
+<strong>解释</strong>
+Trie trie = new Trie();
+trie.insert("apple");
+trie.search("apple");   // 返回 True
+trie.search("app");     // 返回 False
+trie.startsWith("app"); // 返回 True
+trie.insert("app");
+trie.search("app");     // 返回 True
+</pre>
+
+<p> </p>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+    <li><code>1 <= word.length, prefix.length <= 2000</code></li>
+    <li><code>word</code> 和 <code>prefix</code> 仅由小写英文字母组成</li>
+    <li><code>insert</code>、<code>search</code> 和 <code>startsWith</code> 调用次数 <strong>总计</strong> 不超过 <code>3 * 10<sup>4</sup></code> 次</li>
+</ul>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-trie-prefix-tree/">LeetCode</a></p>
+<h3 id="java实现"><a href="#java实现" class="headerlink" title="java实现"></a>java实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Trie</span> &#123;<br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&#123;<br>        <span class="hljs-type">int</span> cnt;<span class="hljs-comment">//可以用来统计词频</span><br>        <span class="hljs-comment">//或者直接用布尔值表示该节点是否可达（等价于count&gt;0）</span><br>        Node[] child;<br>        Node()&#123;<br>            cnt = <span class="hljs-number">0</span>;<br>            child = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>[<span class="hljs-number">26</span>];<br>        &#125;<br>    &#125;<br>    Node root;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Trie</span><span class="hljs-params">()</span> &#123;<br>        root = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insert</span><span class="hljs-params">(String word)</span> &#123;<br>        find(word, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">search</span><span class="hljs-params">(String word)</span> &#123;<br>        <span class="hljs-keyword">return</span> find(word, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">startsWith</span><span class="hljs-params">(String prefix)</span> &#123;<br>        <span class="hljs-keyword">return</span> find(prefix, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>);<br>    &#125;<br>    <span class="hljs-comment">//统一的方法，供前面调用：是否插入，是否是查找前缀</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">find</span><span class="hljs-params">(String s, <span class="hljs-type">boolean</span> isInsert, <span class="hljs-type">boolean</span> isPrefix)</span>&#123;<br>        <span class="hljs-type">Node</span> <span class="hljs-variable">cur</span> <span class="hljs-operator">=</span> root;<span class="hljs-comment">//从空开始</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">char</span> ch : s.toCharArray())&#123;<br>            <span class="hljs-comment">//没有找到这个值</span><br>            <span class="hljs-keyword">if</span>(cur.child[ch - <span class="hljs-string">&#x27;a&#x27;</span>] == <span class="hljs-literal">null</span>)&#123;<br>                <span class="hljs-comment">//如果是插入的话</span><br>                <span class="hljs-keyword">if</span>(isInsert)&#123;<br>                    cur.child[ch - <span class="hljs-string">&#x27;a&#x27;</span>] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>();<br>                &#125;<span class="hljs-keyword">else</span>&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>                &#125;<br>            &#125;<br>            <span class="hljs-comment">//到该字符</span><br>            cur = cur.child[ch - <span class="hljs-string">&#x27;a&#x27;</span>];<br>        &#125;<br>        <span class="hljs-keyword">if</span>(isInsert) cur.cnt++;<span class="hljs-comment">//可以用来统计词频，也可以直接用布尔值表示该节点是否可达</span><br>        <span class="hljs-keyword">if</span>(isPrefix) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">return</span> cur.cnt &gt; <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
+<li>时间复杂度：初始化为 <em>O</em>(1)，其余操作为<em>O</em>(|<em>S</em>|)，其中|<em>S</em>|是每次插入或查询的字符串的长度。</li>
+<li>空间复杂度：<em>O</em>(|<em>T</em>|⋅Σ)，其中|<em>T</em>|为所有插入字符串的长度之和，Σ为字符集的大小，本题Σ&#x3D;26。</li>
+<li>用时31ms（98.69%），内存50.5MB（37.22%）</li>
+</ul>
+<h3 id="哈希集合"><a href="#哈希集合" class="headerlink" title="哈希集合"></a>哈希集合</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Trie</span> &#123;<br><br>    HashSet&lt;String&gt; wordSet;<br>    HashSet&lt;String&gt; trieSet;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Trie</span><span class="hljs-params">()</span> &#123;<br>        wordSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;String&gt;();<br>        trieSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;String&gt;();<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insert</span><span class="hljs-params">(String word)</span> &#123;<br>        wordSet.add(word);<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; word.length(); i++)&#123;<br>            trieSet.add(word.substring(<span class="hljs-number">0</span>, i + <span class="hljs-number">1</span>)); <span class="hljs-comment">//substring左闭右开</span><br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">search</span><span class="hljs-params">(String word)</span> &#123;<br>        <span class="hljs-keyword">return</span> wordSet.contains(word);<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">startsWith</span><span class="hljs-params">(String prefix)</span> &#123;<br>        <span class="hljs-keyword">return</span> trieSet.contains(prefix);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>用时146ms（7.21%），内存49.1MB（97.5%）</li>
+</ul>
+
                 
               </div>
             
@@ -300,7 +353,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="category-chain-item">后端开发</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="category-chain-item">数据结构与算法</a>
   
   
 
@@ -315,7 +368,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/redis/">#redis</a>
+        <a href="/tags/%E5%89%8D%E7%BC%80%E6%A0%91/">#前缀树</a>
+      
+        <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/">#字典树</a>
       
     </div>
   
@@ -327,8 +382,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Redis</div>
-      <div>https://accelerator-liy.github.io/2022/03/02/redis/</div>
+      <div>Trie 前缀树</div>
+      <div>https://accelerator-liy.github.io/2022/08/08/trie/</div>
     </div>
     <div class="license-meta">
       
@@ -340,7 +395,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 2, 2022</div>
+          <div>August 8, 2022</div>
         </div>
       
       
@@ -370,18 +425,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/07/11/kmp%E7%AE%97%E6%B3%95/" title="KMP算法">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">KMP算法</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/01/git/" title="Git">
-                        <span class="hidden-mobile">Git</span>
+                      <a href="/2022/07/13/kruskal/" title="最小生成树">
+                        <span class="hidden-mobile">最小生成树</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
