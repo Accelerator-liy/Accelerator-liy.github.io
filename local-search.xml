@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Java</title>
+    <link href="/2022/08/17/Java/"/>
+    <url>/2022/08/17/Java/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Java内存模型JMM原理"><a href="#Java内存模型JMM原理" class="headerlink" title="Java内存模型JMM原理"></a>Java内存模型JMM原理</h2><h3 id="Volatile关键字"><a href="#Volatile关键字" class="headerlink" title="Volatile关键字"></a>Volatile关键字</h3><ul><li><p>Volatile缓存可见性实现原理<br>底层实现主要是通过汇编lock前缀指令，它会锁定这块内存区域的缓存(缓存行锁定)并回写到主内存。<br>IA-32和Intel 64架构软件开发者手册对lock指令的解释:</p><ol><li>会将当前处理器缓存行的数据立即写回到系统内存。 </li><li>这个写回内存的操作会引起在其他CPU里缓存了该内存地址的数据无效(CPU缓存一致性协议，即MESI协议)</li><li>提供内存屏障功能，使lock前后指令不能重排序</li></ol></li><li><p>JVM底层简化了内存屏障硬件指令的实现</p><ul><li>lock前缀: lock指令不是一种内存屏障，但是它能完成类似内存屏障的功能</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Trie 前缀树</title>
     <link href="/2022/08/08/trie/"/>
     <url>/2022/08/08/trie/</url>
@@ -116,7 +141,7 @@
     <link href="/2022/03/02/redis/"/>
     <url>/2022/03/02/redis/</url>
     
-    <content type="html"><![CDATA[<p><strong>本笔记参考<a href="https://www.zhihu.com/question/61315701/answer/2118820885">知乎回答</a></strong></p><h2 id="Redis面试题"><a href="#Redis面试题" class="headerlink" title="Redis面试题"></a>Redis面试题</h2><h3 id="1-什么是Redis？它主要用来什么的？"><a href="#1-什么是Redis？它主要用来什么的？" class="headerlink" title="1.什么是Redis？它主要用来什么的？"></a>1.什么是Redis？它主要用来什么的？</h3><h3 id="2-说说Redis基本数据类型有哪些吧"><a href="#2-说说Redis基本数据类型有哪些吧" class="headerlink" title="2.说说Redis基本数据类型有哪些吧"></a>2.说说Redis基本数据类型有哪些吧</h3><h3 id="3-Redis为什么快呢？"><a href="#3-Redis为什么快呢？" class="headerlink" title="3.Redis为什么快呢？"></a>3.Redis为什么快呢？</h3><h3 id="4-为什么Redis6-0之后又改用多线程呢"><a href="#4-为什么Redis6-0之后又改用多线程呢" class="headerlink" title="4.为什么Redis6.0之后又改用多线程呢?"></a>4.为什么Redis6.0之后又改用多线程呢?</h3><h3 id="5-知道什么是热key吗？热key问题怎么解决？"><a href="#5-知道什么是热key吗？热key问题怎么解决？" class="headerlink" title="5.知道什么是热key吗？热key问题怎么解决？"></a>5.知道什么是热key吗？热key问题怎么解决？</h3><h3 id="6-什么是缓存击穿、缓存穿透、缓存雪崩？"><a href="#6-什么是缓存击穿、缓存穿透、缓存雪崩？" class="headerlink" title="6.什么是缓存击穿、缓存穿透、缓存雪崩？"></a>6.什么是缓存击穿、缓存穿透、缓存雪崩？</h3><h3 id="7-Redis的过期策略有哪些？"><a href="#7-Redis的过期策略有哪些？" class="headerlink" title="7.Redis的过期策略有哪些？"></a>7.Redis的过期策略有哪些？</h3><h3 id="8-持久化方式有哪些？有什么区别？"><a href="#8-持久化方式有哪些？有什么区别？" class="headerlink" title="8.持久化方式有哪些？有什么区别？"></a>8.持久化方式有哪些？有什么区别？</h3><h3 id="9-怎么实现Redis的高可用？"><a href="#9-怎么实现Redis的高可用？" class="headerlink" title="9.怎么实现Redis的高可用？"></a>9.怎么实现Redis的高可用？</h3><h3 id="10-能说说Redis集群的原理吗？"><a href="#10-能说说Redis集群的原理吗？" class="headerlink" title="10.能说说Redis集群的原理吗？"></a>10.能说说Redis集群的原理吗？</h3><h3 id="11-了解Redis事务机制吗？"><a href="#11-了解Redis事务机制吗？" class="headerlink" title="11.了解Redis事务机制吗？"></a>11.了解Redis事务机制吗？</h3>]]></content>
+    <content type="html"><![CDATA[<p><strong>本笔记参考<a href="https://www.zhihu.com/question/61315701/answer/2118820885">知乎回答</a>, <a href="https://blog.csdn.net/m0_67322837/article/details/125372575">CSDN博客</a> 以及<a href="https://pdai.tech/md/db/nosql-redis/db-redis-overview.html">pdai大神的文章</a></strong></p><h2 id="Redis面试题"><a href="#Redis面试题" class="headerlink" title="Redis面试题"></a>Redis面试题</h2><h3 id="1-什么是Redis？为什么要使用它？它主要用来什么的（应用场景）？"><a href="#1-什么是Redis？为什么要使用它？它主要用来什么的（应用场景）？" class="headerlink" title="1.什么是Redis？为什么要使用它？它主要用来什么的（应用场景）？"></a>1.什么是Redis？为什么要使用它？它主要用来什么的（应用场景）？</h3><ul><li>什么是Redis？<br>Redis是一个内存高速非关系缓存数据库。Redis全称为：Remote Dictionary Server（远程数据服务），使用C语言编写，开源。Redis是一个key-value存储系统（键值存储系统），支持丰富的数据类型，如：String（字符串）、list（链表）、set（集合）、zset（有序集合）、hash（哈希）。<br>Redis是一种支持key-value等多种数据结构的存储系统。可用于缓存，事件发布或订阅，高速队列等场景。支持网络，提供字符串，哈希，列表，队列，集合结构直接存取，基于内存，可持久化。</li></ul><h3 id="2-说说Redis基本数据类型有哪些吧"><a href="#2-说说Redis基本数据类型有哪些吧" class="headerlink" title="2.说说Redis基本数据类型有哪些吧"></a>2.说说Redis基本数据类型有哪些吧</h3><h3 id="3-Redis为什么快呢？"><a href="#3-Redis为什么快呢？" class="headerlink" title="3.Redis为什么快呢？"></a>3.Redis为什么快呢？</h3><h3 id="4-为什么Redis6-0之后又改用多线程呢"><a href="#4-为什么Redis6-0之后又改用多线程呢" class="headerlink" title="4.为什么Redis6.0之后又改用多线程呢?"></a>4.为什么Redis6.0之后又改用多线程呢?</h3><h3 id="5-知道什么是热key吗？热key问题怎么解决？"><a href="#5-知道什么是热key吗？热key问题怎么解决？" class="headerlink" title="5.知道什么是热key吗？热key问题怎么解决？"></a>5.知道什么是热key吗？热key问题怎么解决？</h3><h3 id="6-什么是缓存击穿、缓存穿透、缓存雪崩？"><a href="#6-什么是缓存击穿、缓存穿透、缓存雪崩？" class="headerlink" title="6.什么是缓存击穿、缓存穿透、缓存雪崩？"></a>6.什么是缓存击穿、缓存穿透、缓存雪崩？</h3><h3 id="7-Redis的过期策略有哪些？"><a href="#7-Redis的过期策略有哪些？" class="headerlink" title="7.Redis的过期策略有哪些？"></a>7.Redis的过期策略有哪些？</h3><h3 id="8-持久化方式有哪些？有什么区别？"><a href="#8-持久化方式有哪些？有什么区别？" class="headerlink" title="8.持久化方式有哪些？有什么区别？"></a>8.持久化方式有哪些？有什么区别？</h3><h3 id="9-怎么实现Redis的高可用？"><a href="#9-怎么实现Redis的高可用？" class="headerlink" title="9.怎么实现Redis的高可用？"></a>9.怎么实现Redis的高可用？</h3><h3 id="10-能说说Redis集群的原理吗？"><a href="#10-能说说Redis集群的原理吗？" class="headerlink" title="10.能说说Redis集群的原理吗？"></a>10.能说说Redis集群的原理吗？</h3><h3 id="11-了解Redis事务机制吗？"><a href="#11-了解Redis事务机制吗？" class="headerlink" title="11.了解Redis事务机制吗？"></a>11.了解Redis事务机制吗？</h3>]]></content>
     
     
     <categories>
